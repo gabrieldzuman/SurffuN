@@ -1,4 +1,14 @@
 <?php
+$message = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+
+    $message = "Mensagem enviada com sucesso!";
+}
+?>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -10,25 +20,27 @@
     <meta name="author" content="Gabriel Dzuman">
 </head>
 <body>
-    <a href="./index.html">
-    <img src="./img/LOGO2.jpg" width="250px"></a>
+    <header>
+        <a href="./index.php">
+            <img src="./img/LOGO2.jpg" width="250px" alt="Logo SurffuN">
+        </a>
+        <nav class="menu">
+            <a href="#sobre">Sobre</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#lojas">Lojas</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
 
-    <div class="menu">
-        <a href="#">Sobre</a>
-        <a href="#">Produtos</a>
-        <a href="#">Lojas</a>
-        <a href="#">Contato</a>
-    </div>
-
-    <div class="conteudo">
-        <div class="introducao">
+    <main class="conteudo">
+        <section class="introducao">
             <span class="detalhe"></span>
             <h1>Pranchas Feitas a Mão</h1>
             <p>A <b>Faraöt</b> é a melhor prancha já criada pela nossa equipe. Ela é produzida manualmente com os melhores e mais rentáveis materiais.</p>
-            <a class="botao" href="#">Ver Mais</a>
-        </div>
+            <a class="botao" href="#produtos">Ver Mais</a>
+        </section>
 
-        <img src="./img/surf.jpg" alt="surf mergulho">
+        <img src="./img/surf.jpg" alt="Surf Mergulho" class="imagem-surf">
 
         <h2 class="subtitulo">Vantagens SurffuN</h2>
 
@@ -39,17 +51,42 @@
             </div>
             <div class="vantagens-item">
                 <h3>Durabilidade / Funcionalidade</h3>
-                <p>Sua prancha pode estar linda, leve e sem nenhum malho aberto, mas pode ter certeza que ela já não funciona mais como antigamente. As pranchas de surf perdem suas características originais com o tempo, se tornam menos rígidas, menos responsivas. <a href="#">Compre a sua <b>Faraöt</b> aqui</a>
+                <p>Sua prancha pode estar linda, leve e sem nenhum malho aberto, mas pode ter certeza que ela já não funciona mais como antigamente. <a href="#">Compre a sua <b>Faraöt</b> aqui</a></p>
             </div>
             <div class="vantagens-item">
                 <h3>Segurança</h3>
-                <p>Leash mais resistente e antiressecamento, maior aderência à parafina, evitando escorregões e quedas. Decks colocados na parte traseira da prancha, são feitos de borracha antiderrapante, fazem com que o pé do surfista esteja sempre bem fixo e os movimentos possam ser realizados com mais segurança e desempenho.</p>
+                <p>Leash mais resistente e antiressecamento, maior aderência à parafina, evitando escorregões e quedas. Decks colocados na parte traseira da prancha, feitos de borracha antiderrapante, garantem que o pé do surfista esteja sempre bem fixo.</p>
             </div>
         </div>
-    </div>
 
-    <div class="rodape">
-        <p>&copy; SurffuN / LegatumProject - Alguns Direitos Reservados. 2022</p>
-    </div>
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <?php if ($message): ?>
+                <p class="success-message"><?php echo $message; ?></p>
+            <?php endif; ?>
+            <form method="POST" action="">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div>
+            <p>&copy; SurffuN / LegatumProject - Alguns Direitos Reservados. 2024</p>
+            <div class="redes-sociais">
+                <a href="https://www.facebook.com" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
